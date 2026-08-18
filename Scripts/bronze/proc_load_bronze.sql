@@ -119,7 +119,7 @@ declare @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating Table: bronze.erp_PX_CAT_G1V2';
-        TRUNCATE TABLE bronze.erp_cust_az12;
+        TRUNCATE TABLE bronze.erp_PX_CAT_G1V2;
         PRINT '>> Inserting Data Into: bronze.erp_PX_CAT_G1V2';
         BULK INSERT bronze.erp_PX_CAT_G1V2
         FROM 'D:\# Workspace\Projects\DataWareHouse\Datasets\source_erp\PX_CAT_G1V2.csv'
