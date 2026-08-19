@@ -44,6 +44,7 @@ create view gold.dim_customers as
 	left join silver.erp_loc_a101 la
 	on ci.cst_key = la.cid
 
+go
 -----------------------------------------------------------
 -- =============================================================================
 -- Create Dimension: gold.dim_products
@@ -70,6 +71,7 @@ create view gold.dim_products as
 	on p.cat_id = pc.id
 	where p.prd_end_dt is null
 
+go
 ------------------------------------------------------------------------
 
 -- =============================================================================
@@ -95,3 +97,4 @@ create view gold.fact_sales as
 	on si.sls_prd_key = dp.product_number
 	left join gold.dim_customers dc
 	on si.sls_cust_id = dc.customer_id
+

@@ -1,117 +1,98 @@
 /*
 ===============================================================================
-DDL Script: Create silver Tables
+DDL Script: Create Silver Tables
 ===============================================================================
 Script Purpose:
     This script creates tables in the 'silver' schema, dropping existing tables 
     if they already exist.
-	  Run this script to re-define the DDL structure of 'silver' Tables
+	  Run this script to re-define the DDL structure of 'bronze' Tables
 ===============================================================================
 */
 
-if object_id ('silver.crm_cust_info','u') is not null
-	drop table silver.crm_cust_info;
+IF OBJECT_ID('silver.crm_cust_info', 'U') IS NOT NULL
+    DROP TABLE silver.crm_cust_info;
+GO
 
-create table silver.crm_cust_info (
-	cst_id int ,
-	cst_key nvarchar(50),
-	cst_firstname nvarchar(50),
-	cst_lastname nvarchar(50),
-	cst_marital_status nvarchar(50),	
-	cst_gndr nvarchar(20),
-	cst_create_date date,
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.crm_cust_info (
+    cst_id             INT,
+    cst_key            NVARCHAR(50),
+    cst_firstname      NVARCHAR(50),
+    cst_lastname       NVARCHAR(50),
+    cst_marital_status NVARCHAR(50),
+    cst_gndr           NVARCHAR(50),
+    cst_create_date    DATE,
+    dwh_create_date    DATETIME2 DEFAULT GETDATE()
 );
-go
+GO
 
--- =========================================================
--- CRM: Product Information
--- Stores raw product details and product validity dates.
--- =========================================================
+IF OBJECT_ID('silver.crm_prd_info', 'U') IS NOT NULL
+    DROP TABLE silver.crm_prd_info;
+GO
 
-if object_id ('silver.crm_prd_info','u') is not null
-	drop table silver.crm_prd_info;
-
-create table silver.crm_prd_info (
-	prd_id int,
-	prd_key nvarchar(50),
-	prd_nm nvarchar(50),
-	prd_cost int,
-	prd_line char(1),
-	prd_start_dt datetime,
-	prd_end_dt datetime,
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.crm_prd_info (
+    prd_id          INT,
+    cat_id          NVARCHAR(50),
+    prd_key         NVARCHAR(50),
+    prd_nm          NVARCHAR(50),
+    prd_cost        INT,
+    prd_line        NVARCHAR(50),
+    prd_start_dt    DATE,
+    prd_end_dt      DATE,
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-go
+GO
 
+IF OBJECT_ID('silver.crm_sales_info', 'U') IS NOT NULL
+    DROP TABLE silver.crm_sales_info;
+GO
 
--- =========================================================
--- CRM: Sales Information
--- Stores raw sales order and transaction information.
--- =========================================================
-
-if object_id ('silver.crm_sales_info','u') is not null
-	drop table silver.crm_sales_info;
-
-create table silver.crm_sales_info(
-	sls_ord_num nvarchar(50),
-	sls_prd_key nvarchar(50),
-	sls_cust_id int,
-	sls_order_dt int,
-	sls_ship_dt int,
-	sls_due_dt int,
-	sls_sales int,
-	sls_quantity int,
-	sls_price int,
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.crm_sales_info (
+    sls_ord_num     NVARCHAR(50),
+    sls_prd_key     NVARCHAR(50),
+    sls_cust_id     INT,
+    sls_order_dt    DATE,
+    sls_ship_dt     DATE,
+    sls_due_dt      DATE,
+    sls_sales       INT,
+    sls_quantity    INT,
+    sls_price       INT,
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-go
+GO
 
+IF OBJECT_ID('silver.erp_loc_a101', 'U') IS NOT NULL
+    DROP TABLE silver.erp_loc_a101;
+GO
 
--- =========================================================
--- ERP: Customer Information
--- Stores raw customer demographic information from ERP.
--- =========================================================
-
-if object_id ('silver.erp_cust_az12','u') is not null
-	drop table silver.erp_cust_az12;
-
-create table silver.erp_cust_az12 (
-	CID nvarchar(50),
-	BDate date,
-	Gen nvarchar(10),
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.erp_loc_a101 (
+    cid             NVARCHAR(50),
+    cntry           NVARCHAR(50),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-go
+GO
 
--- =========================================================
--- ERP: Customer Location
--- Stores raw customer country/location information.
--- =========================================================
+IF OBJECT_ID('silver.erp_cust_az12', 'U') IS NOT NULL
+    DROP TABLE silver.erp_cust_az12;
+GO
 
-if object_id ('silver.erp_loc_a101','u') is not null
-	drop table silver.erp_loc_a101;
-
-create table silver.erp_loc_a101 (
-	CID nvarchar(50),
-	CNTRY nvarchar(50),
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.erp_cust_az12 (
+    cid             NVARCHAR(50),
+    bdate           DATE,
+    gen             NVARCHAR(50),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-go
+GO
 
--- =========================================================
--- ERP: Product Category
--- Stores raw product category, subcategory,
--- and maintenance information.
--- =========================================================
-if object_id ('silver.erp_Px_Cat_g1v2','u') is not null
-	drop table silver.erp_Px_Cat_g1v2;
+IF OBJECT_ID('silver.erp_px_cat_g1v2', 'U') IS NOT NULL
+    DROP TABLE silver.erp_px_cat_g1v2;
+GO
 
-create table silver.erp_Px_Cat_g1v2 (
-	ID nvarchar(50),
-	CAT nvarchar(50),
-	SubCat nvarchar(50),
-	Maintenance nvarchar(50),
-	dwh_create_date datetime2 default getdate()
+CREATE TABLE silver.erp_px_cat_g1v2 (
+    id              NVARCHAR(50),
+    cat             NVARCHAR(50),
+    subcat          NVARCHAR(50),
+    maintenance     NVARCHAR(50),
+    dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
-go 
+GO
+
