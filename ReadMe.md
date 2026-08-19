@@ -68,37 +68,31 @@ Develop SQL-based analytics to deliver detailed insights into:
 
 These insights provide stakeholders with key business metrics to support strategic decision-making.
 
-For more details, refer to docs/requirements.md.
 
-### 📂 **Repository Structure**
+## 📂 Repository Structure
 
+```text
 data-warehouse-project/
 │
-├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
+├── datasets/                       # Raw ERP and CRM datasets
 │
-├── docs/                               # Project documentation and architecture details
-│   ├── etl.drawio                      # Draw.io file shows all different techniquies and methods of ETL
-│   ├── data_architecture.drawio        # Draw.io file shows the project's architecture
-│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── data_flow.drawio                # Draw.io file for the data flow diagram
-│   ├── data_models.drawio              # Draw.io file for data models (star schema)
-│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
+├── docs/                           # Project documentation
+│   ├── etl.drawio                 # ETL methods and techniques
+│   ├── data_architecture.drawio   # Project architecture
+│   ├── data_catalog.md            # Dataset and field descriptions
+│   ├── data_flow.drawio           # Data flow diagram
+│   ├── data_models.drawio         # Star schema data model
+│   └── naming-conventions.md      # Naming standards
 │
-├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/                         # Scripts for extracting and loading raw data
-│   ├── silver/                         # Scripts for cleaning and transforming data
-│   ├── gold/                           # Scripts for creating analytical models
+├── scripts/                        # SQL scripts for ETL and transformations
+│   ├── bronze/                     # Raw data ingestion
+│   ├── silver/                     # Data cleaning and transformation
+│   └── gold/                       # Analytical models
 │
-├── tests/                              # Test scripts and quality files
-│
-├── README.md                           # Project overview and instructions
-│
-├── LICENSE                             # License information for the repository
-│
-├── .gitignore                          # Files and directories to be ignored by Git
-│
-└── requirements.txt                    # Dependencies and requirements for the project
+├── tests/                          # Data quality and validation scripts
 
+└── README.md                       # Project overview
+```
 ### 🌟 **About Me**
 
 Hi! I’m **Yash**, an aspiring **Data Engineer and AI & Data Science enthusiast**. I’m passionate about working with data, building data pipelines and warehouses, and turning raw data into meaningful insights. I enjoy learning, building real-world projects, and sharing my journey in the world of data and technology. 🚀📊
