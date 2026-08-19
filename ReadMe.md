@@ -77,12 +77,10 @@ data-warehouse-project/
 ├── datasets/                       # Raw ERP and CRM datasets
 │
 ├── docs/                           # Project documentation
-│   ├── etl.drawio                 # ETL methods and techniques
-│   ├── data_architecture.drawio   # Project architecture
-│   ├── data_catalog.md            # Dataset and field descriptions
-│   ├── data_flow.drawio           # Data flow diagram
-│   ├── data_models.drawio         # Star schema data model
-│   └── naming-conventions.md      # Naming standards
+│   ├── Data Flow Diagram.png              # Data flow diagram
+│   ├── Integration Model.png              # Data integration model
+│   ├── Sales Data Marts.png               # Sales data mart / star schema
+│   └── NOTION DATA WAREHOUSE PROJECT.pdf  # Project documentation
 │
 ├── scripts/                        # SQL scripts for ETL and transformations
 │   ├── bronze/                     # Raw data ingestion
