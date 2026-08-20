@@ -9,103 +9,82 @@ Script Purpose:
 ===============================================================================
 */
 
-if object_id ('bronze.crm_cust_info','u') is not null
-	drop table bronze.crm_cust_info;
+IF OBJECT_ID('bronze.crm_cust_info', 'U') IS NOT NULL
+    DROP TABLE bronze.crm_cust_info;
+GO
 
-create table bronze.crm_cust_info (
-	cst_id int ,
-	cst_key nvarchar(50),
-	cst_firstname nvarchar(50),
-	cst_lastname nvarchar(50),
-	cst_marital_status nvarchar(50),	
-	cst_gndr nvarchar(20),
-	cst_create_date date
+CREATE TABLE bronze.crm_cust_info (
+    cst_id              INT,
+    cst_key             NVARCHAR(50),
+    cst_firstname       NVARCHAR(50),
+    cst_lastname        NVARCHAR(50),
+    cst_marital_status  NVARCHAR(50),
+    cst_gndr            NVARCHAR(50),
+    cst_create_date     DATE
 );
-go
+GO
 
--- =========================================================
--- CRM: Product Information
--- Stores raw product details and product validity dates.
--- =========================================================
+IF OBJECT_ID('bronze.crm_prd_info', 'U') IS NOT NULL
+    DROP TABLE bronze.crm_prd_info;
+GO
 
-if object_id ('bronze.crm_prd_info','u') is not null
-	drop table bronze.crm_prd_info;
-
-create table bronze.crm_prd_info (
-	prd_id int,
-	prd_key nvarchar(50),
-	prd_nm nvarchar(50),
-	prd_cost int,
-	prd_line char(1),
-	prd_start_dt datetime,
-	prd_end_dt datetime
+CREATE TABLE bronze.crm_prd_info (
+    prd_id       INT,
+    prd_key      NVARCHAR(50),
+    prd_nm       NVARCHAR(50),
+    prd_cost     INT,
+    prd_line     NVARCHAR(50),
+    prd_start_dt DATETIME,
+    prd_end_dt   DATETIME
 );
-go
+GO
 
+IF OBJECT_ID('bronze.crm_sales_info', 'U') IS NOT NULL
+    DROP TABLE bronze.crm_sales_info;
+GO
 
--- =========================================================
--- CRM: Sales Information
--- Stores raw sales order and transaction information.
--- =========================================================
-
-if object_id ('bronze.crm_sales_info','u') is not null
-	drop table bronze.crm_sales_info;
-
-create table bronze.crm_sales_info(
-	sls_ord_num nvarchar(50),
-	sls_prd_key nvarchar(50),
-	sls_cust_id int,
-	sls_order_dt int,
-	sls_ship_dt int,
-	sls_due_dt int,
-	sls_sales int,
-	sls_quantity int,
-	sls_price int
+CREATE TABLE bronze.crm_sales_info (
+    sls_ord_num  NVARCHAR(50),
+    sls_prd_key  NVARCHAR(50),
+    sls_cust_id  INT,
+    sls_order_dt INT,
+    sls_ship_dt  INT,
+    sls_due_dt   INT,
+    sls_sales    INT,
+    sls_quantity INT,
+    sls_price    INT
 );
-go
+GO
 
+IF OBJECT_ID('bronze.erp_loc_a101', 'U') IS NOT NULL
+    DROP TABLE bronze.erp_loc_a101;
+GO
 
--- =========================================================
--- ERP: Customer Information
--- Stores raw customer demographic information from ERP.
--- =========================================================
-
-if object_id ('bronze.erp_cust_az12','u') is not null
-	drop table bronze.erp_cust_az12;
-
-create table bronze.erp_cust_az12 (
-	CID nvarchar(50),
-	BDate date,
-	Gen nvarchar(10)
+CREATE TABLE bronze.erp_loc_a101 (
+    cid    NVARCHAR(50),
+    cntry  NVARCHAR(50)
 );
-go
+GO
 
--- =========================================================
--- ERP: Customer Location
--- Stores raw customer country/location information.
--- =========================================================
+IF OBJECT_ID('bronze.erp_cust_az12', 'U') IS NOT NULL
+    DROP TABLE bronze.erp_cust_az12;
+GO
 
-if object_id ('bronze.erp_loc_a101','u') is not null
-	drop table bronze.erp_loc_a101;
-
-create table bronze.erp_loc_a101 (
-	CID nvarchar(50),
-	CNTRY nvarchar(50)
+CREATE TABLE bronze.erp_cust_az12 (
+    cid    NVARCHAR(50),
+    bdate  DATE,
+    gen    NVARCHAR(50)
 );
-go
+GO
 
--- =========================================================
--- ERP: Product Category
--- Stores raw product category, subcategory,
--- and maintenance information.
--- =========================================================
-if object_id ('bronze.erp_Px_Cat_g1v2','u') is not null
-	drop table bronze.erp_Px_Cat_g1v2;
+IF OBJECT_ID('bronze.erp_px_cat_g1v2', 'U') IS NOT NULL
+    DROP TABLE bronze.erp_px_cat_g1v2;
+GO
 
-create table bronze.erp_Px_Cat_g1v2 (
-	ID nvarchar(50),
-	CAT nvarchar(50),
-	SubCat nvarchar(50),
-	Maintenance nvarchar(50)
+CREATE TABLE bronze.erp_px_cat_g1v2 (
+    id           NVARCHAR(50),
+    cat          NVARCHAR(50),
+    subcat       NVARCHAR(50),
+    maintenance  NVARCHAR(50)
 );
-go
+GO
